@@ -5,18 +5,21 @@ const pool = require("../db");
 // CREATE
 router.post("/", async (req, res) => {
     const { name, email } = req.body;
-
-    const newUser = await pool.query(
-    "INSERT INTO users(name,email) VALUES($1,$2) RETURNING *",
-        [name, email]
-    );
-
-    res.json(newUser.rows[0]);
+    try {
+        const newUser = await pool.query(
+            "INSERT INTO users(name,email) VALUES($1,$2) RETURNING *",
+            [name, email]
+        );
+        res.json(newUser.rows[0]);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).json({ error: "Server error" });
+    }
 });
 
 // READ
 router.get("/", async (req, res) => {
-  const users = await pool.query("SELECT * FROM users");
+    const users = await pool.query("SELECT * FROM users");
 
     res.json(users.rows);
 });
