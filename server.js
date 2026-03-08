@@ -17,7 +17,7 @@ app.use(express.json());
 app.use("/user", userRoutes);
 
 // test route
-app.get("/", (req, res) => res.send("API ishlayapti 🚀"));
+app.get("/", (req, res) => res.send(userRoutes));
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
