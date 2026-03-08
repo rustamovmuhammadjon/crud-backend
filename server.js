@@ -17,7 +17,17 @@ app.use(express.json());
 app.use("/user", userRoutes);
 
 // test route
-app.get("/", (req, res) => res.send(userRoutes));
+// app.get("/", (req, res) => res.send(userRoutes));
+
+app.get("/", async (req, res) => {
+    try {
+        const users = await pool.query("SELECT * FROM users");
+        res.json(users.rows);
+    } catch (err) {
+        console.error(err.message); // console.log Render logs’da chiqadi
+        res.status(500).json({ error: "Server error" });
+    }
+});
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
