@@ -7,8 +7,8 @@ const app = express();
 
 // 1️⃣ CORS middleware
 app.use(cors({
-    origin: 'https://crud-frontend-njfvquent-muhammadjons-projects-9deb839a.vercel.app', // Allow only your frontend origin
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify the allowed HTTP methods
+    origin: '*', // Allow only your frontend origin
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Specify the allowed HTTP methods
     allowedHeaders: ['Content-Type', 'Authorization'] // Specify the allowed headers
 }));
 
