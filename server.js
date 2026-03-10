@@ -14,7 +14,7 @@ app.use(cors({
 
 app.use(express.json());
 
-app.use("/user", userRoutes);
+app.use("/users", userRoutes);
 
 // test route
 app.get("/", (req, res) => res.send("API ishlayapti 🚀"));
